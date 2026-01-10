@@ -5,10 +5,7 @@
 
 int main(int argc, char* argv[])
 {
-    std::string input = "../input/day01_input";
-    if (argc > 1) {
-        input = argv[1];
-    }
+    std::string input = getInputPath(argc, argv,"day01_input");
 
     try {
         std::ifstream file = openFile(input);

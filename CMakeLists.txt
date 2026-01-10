@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(utils utils/utils.cpp)
 target_include_directories(utils PUBLIC utils)
 
+# Global input directory definition
+set(INPUT_DIR "${CMAKE_SOURCE_DIR}/input")
+
+
 # Find all day folders
 file(GLOB DAY_DIRS day_*)
 
@@ -18,5 +22,8 @@ foreach(day_dir ${DAY_DIRS})
         get_filename_component(exec_name ${src} NAME_WE)
         add_executable(${exec_name} ${src})
         target_link_libraries(${exec_name} PRIVATE utils)
+        target_compile_definitions(utils
+            PUBLIC INPUT_DIR="${INPUT_DIR}"
+        )
     endforeach()
 endforeach()
